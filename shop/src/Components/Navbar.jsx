@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 import {
   RiHome2Line,
   RiInformationLine,
@@ -6,6 +7,7 @@ import {
   RiContactsLine,
   RiLoginCircleLine,
   RiUserAddLine,
+  RiProductHuntFill,
 } from "react-icons/ri";
 
 function Navbar() {
@@ -19,30 +21,30 @@ function Navbar() {
     <nav className="bg-gray-800 p-4 max-w-screen">
       <div className="flex items-center justify-between mx-auto">
         <div>
-          <span className="text-white font-bold flex items-center">
+          <Link to="/" className="text-white font-bold flex items-center">
             OnlineShop
-          </span>
+          </Link>
         </div>
-        <div className="hidden md:flex">
-          <span className="text-white mx-10 flex items-center">
+        <div className="md:flex hidden">
+          <Link to="/" className="text-white mx-10 flex items-center">
             <RiHome2Line className="mr-1" />
             Home
-          </span>
-          <span className="text-white mx-10 flex items-center">
+          </Link>
+          <Link to="/about" className="text-white mx-10 flex items-center">
             <RiInformationLine className="mr-1" /> About
-          </span>
-          <span className="text-white mx-10 flex items-center">
-            <RiSettings2Line className="mr-1" /> Services
-          </span>
-          <span className="text-white mx-10 flex items-center">
+          </Link>
+          <Link to="/services" className="text-white mx-10 flex items-center">
+            <RiProductHuntFill className="mr-1" /> Product
+          </Link>
+          <Link to="/contact" className="text-white mx-10 flex items-center">
             <RiContactsLine className="mr-1" /> Contact
-          </span>
-          <span className="text-white mx-10 flex items-center">
+          </Link>
+          <Link to="/login" className="text-white mx-10 flex items-center">
             <RiLoginCircleLine className="mr-1" /> Login
-          </span>
-          <span className="text-white mx-10 flex items-center">
+          </Link>
+          <Link to="/signup" className="text-white mx-10 flex items-center">
             <RiUserAddLine className="mr-1" /> Sign Up
-          </span>
+          </Link>
         </div>
         <div className="md:hidden">
           <button
@@ -67,29 +69,28 @@ function Navbar() {
           </button>
         </div>
       </div>
-      <div
-        id="mobileMenu"
-        className={`md:hidden ${isMobileMenuOpen ? "" : "hidden"}`}
-      >
-        <span className="text-white py-2 px-4 flex items-center">
-          <RiHome2Line className="mr-1" /> Home
-        </span>
-        <span className="text-white py-2 px-4 flex items-center">
-          <RiInformationLine className="mr-1" /> About
-        </span>
-        <span className="text-white py-2 px-4 flex items-center">
-          <RiSettings2Line className="mr-1" /> Services
-        </span>
-        <span className="text-white py-2 px-4 flex items-center">
-          <RiContactsLine className="mr-1" /> Contact
-        </span>
-        <span className="text-white py-2 px-4 flex items-center">
-          <RiLoginCircleLine className="mr-1" /> Login
-        </span>
-        <span className="text-white py-2 px-4 flex items-center">
-          <RiUserAddLine className="mr-1" /> Sign Up
-        </span>
-      </div>
+      {isMobileMenuOpen && (
+        <div className="text-white md:hidden">
+          <Link to="/" className="py-2 px-4 flex items-center">
+            <RiHome2Line className="mr-1" /> Home
+          </Link>
+          <Link to="/about" className="py-2 px-4 flex items-center">
+            <RiInformationLine className="mr-1" /> About
+          </Link>
+          <Link to="/services" className="py-2 px-4 flex items-center">
+            <RiProductHuntFill className="mr-1" /> Product
+          </Link>
+          <Link to="/contact" className="py-2 px-4 flex items-center">
+            <RiContactsLine className="mr-1" /> Contact
+          </Link>
+          <Link to="/login" className="py-2 px-4 flex items-center">
+            <RiLoginCircleLine className="mr-1" /> Login
+          </Link>
+          <Link to="/signup" className="py-2 px-4 flex items-center">
+            <RiUserAddLine className="mr-1" /> Sign Up
+          </Link>
+        </div>
+      )}
     </nav>
   );
 }
