@@ -39,9 +39,12 @@ const ShoppingCart = ({ cartItems, onClose }) => {
       <div className="bg-white p-8 max-w-md rounded-lg shadow-xl">
         <h2 className="text-2xl font-semibold mb-4">Shopping Cart</h2>
         {cartItems.map((item, index) => (
-          <div key={index} className="mb-4">
-            <p>{item.name}</p>
-            <p>{item.price}</p>
+          <div key={index} className="mb-4 flex items-center">
+            <img src={item.image} alt={item.name} className="w-10 h-10 mr-4" />
+            <div>
+              <p className="font-semibold">{item.name}</p>
+              <p>{item.price}</p>
+            </div>
           </div>
         ))}
         <button
@@ -90,7 +93,11 @@ const App = () => {
   ];
 
   const addToCart = (product) => {
+    // Add the product to the cart
     setCartItems([...cartItems, product]);
+
+    // Open the cart popup
+    setCartOpen(true);
   };
 
   const toggleCart = () => {
