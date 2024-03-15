@@ -1,162 +1,114 @@
-import React, { useState, useRef } from "react";
-import { ShoppingCartIcon } from "@heroicons/react/outline";
+import React, { useState } from "react";
 
-const products = [
-  {
-    id: 1,
-    name: "Product 1",
-    price: 10,
-    image:
-      "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/462191/item/goods_01_462191.jpg?width=494",
-  },
-  {
-    id: 2,
-    name: "Product 2",
-    price: 20,
-    image:
-      "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/462191/item/goods_01_462191.jpg?width=494",
-  },
-  {
-    id: 3,
-    name: "Product 3",
-    price: 30,
-    image:
-      "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/462191/item/goods_01_462191.jpg?width=494",
-  },
-  {
-    id: 4,
-    name: "Product 4",
-    price: 30,
-    image:
-      "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/462191/item/goods_01_462191.jpg?width=494",
-  },
-];
-
-const ProductSlider = () => {
-  const [cart, setCart] = useState([]);
-  const sliderRef = useRef(null);
-
-  const addToCart = (product) => {
-    const newCartItem = {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-    };
-    setCart([...cart, newCartItem]);
-  };
-
-  const removeFromCart = (productId) => {
-    setCart(cart.filter((item) => item.id !== productId));
-  };
-
-  const getTotalPrice = () => {
-    return cart.reduce((total, item) => total + item.price, 0);
-  };
-
-  const scrollLeft = () => {
-    if (sliderRef.current) {
-      const scrollAmount = sliderRef.current.scrollLeft;
-      sliderRef.current.scrollLeft = scrollAmount - 200;
-    }
-  };
-
-  const scrollRight = () => {
-    if (sliderRef.current) {
-      const scrollAmount = sliderRef.current.scrollLeft;
-      const scrollWidth = sliderRef.current.scrollWidth;
-      const clientWidth = sliderRef.current.clientWidth;
-      const maxScroll = scrollWidth - clientWidth;
-      if (scrollAmount < maxScroll) {
-        sliderRef.current.scrollLeft = scrollAmount + 200;
-      } else {
-        sliderRef.current.scrollLeft = 0;
-      }
-    }
-  };
-
+const ProductCard = ({ product, addToCart }) => {
   return (
-    <div className="flex flex-col w-full max-w-full">
-      <div className="flex flex-wrap">
-        <div className="w-full sm:w-1/2 md:max-w-2xl mx-auto relative overflow-hidden">
-          <button
-            onClick={scrollLeft}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black rounded-full p-2 z-10 "
-          >
-            {"<"}
-          </button>
-          <button
-            onClick={scrollRight}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black rounded-full p-2 z-10"
-          >
-            {">"}
-          </button>
-          <div className="flex overflow-x-auto justify-start" ref={sliderRef}>
-            {products.map((product) => (
-              <div key={product.id} className="flex-shrink-0 w-64 p-5">
-                <div className="bg-white rounded-lg shadow-md p-6 my-5">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full mb-2"
-                  />
-                  <h2 className="text-base font-semibold text-black">
-                    {product.name}
-                  </h2>
-                  <p className="text-gray-500 text-sm">${product.price}</p>
-                  <div className="flex justify-between mt-2">
-                    <button
-                      onClick={() => addToCart(product)}
-                      className="bg-blue-500 text-white px-3 py-1 rounded-md text-sm"
-                    >
-                      Add
-                    </button>
-                    {/* Render remove button only if the item is in the cart */}
-                    {cart.find((item) => item.id === product.id) && (
-                      <button
-                        onClick={() => removeFromCart(product.id)}
-                        className="bg-red-500 text-white px-3 py-1 rounded-md text-sm"
-                      >
-                        Remove
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="w-full sm:w-1/2 md:w-1/3 p-4">
-          <div className="bg-gray-100 p-4 rounded-lg text-black">
-            <h2 className="text-xl font-semibold">Shopping Cart</h2>
-            {cart.map((item) => (
-              <div key={item.id} className="flex items-center mt-2">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-8 h-8 mr-2 rounded"
-                />
-                <div className="shopcartContainer">
-                  <p className="font-semibold">{item.name}</p>
-                  <p className="text-gray-500">${item.price}</p>
-                </div>
-                {/* Add remove button for each item in the cart */}
-                <button
-                  onClick={() => removeFromCart(item.id)}
-                  className="bg-red-500 text-white px-3 py-1 rounded-md text-sm ml-4"
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-            <div className="mt-4">
-              <p className="font-semibold">Total Price: ${getTotalPrice()}</p>
-            </div>
-          </div>
-        </div>
+    <div className="max-w-sm rounded overflow-hidden shadow-lg">
+      <img className="w-full" src={product.image} alt={product.name} />
+      <div className="px-6 py-4">
+        <div className="font-bold text-xl mb-2">{product.name}</div>
+        <p className="text-white text-base">{product.description}</p>
+      </div>
+      <div className="px-6 py-4 flex justify-between items-center">
+        <span className="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-black mr-2">
+          {product.price}
+        </span>
+        <button
+          onClick={() => addToCart(product)}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );
 };
 
-export default ProductSlider;
+const ProductGrid = ({ products, addToCart }) => {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {products.map((product, index) => (
+        <ProductCard key={index} product={product} addToCart={addToCart} />
+      ))}
+    </div>
+  );
+};
+
+const ShoppingCart = ({ cartItems, onClose }) => {
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
+      <div className="bg-white p-8 max-w-md rounded-lg shadow-xl">
+        <h2 className="text-2xl font-semibold mb-4">Shopping Cart</h2>
+        {cartItems.map((item, index) => (
+          <div key={index} className="mb-4">
+            <p>{item.name}</p>
+            <p>{item.price}</p>
+          </div>
+        ))}
+        <button
+          onClick={onClose}
+          className="mt-4 p-2 bg-gray-500 text-white rounded-md"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const App = () => {
+  const [cartOpen, setCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+
+  const products = [
+    {
+      name: "Product 1",
+      image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      price: "$19.99",
+    },
+    {
+      name: "Product 2",
+      image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg",
+      description:
+        "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      price: "$29.99",
+    },
+    {
+      name: "Product 3",
+      image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg",
+      description:
+        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+      price: "$39.99",
+    },
+    {
+      name: "Product 4",
+      image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg",
+      description:
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+      price: "$49.99",
+    },
+  ];
+
+  const addToCart = (product) => {
+    setCartItems([...cartItems, product]);
+  };
+
+  const toggleCart = () => {
+    setCartOpen(!cartOpen);
+  };
+
+  return (
+    <div className="container mx-auto p-4">
+      <button
+        onClick={toggleCart}
+        className="fixed bottom-4 right-4 p-3 bg-blue-500 text-white rounded-full shadow-md"
+      >
+        Cart ({cartItems.length})
+      </button>
+      {cartOpen && <ShoppingCart cartItems={cartItems} onClose={toggleCart} />}
+      <ProductGrid products={products} addToCart={addToCart} />
+    </div>
+  );
+};
+
+export default App;

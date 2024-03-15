@@ -1,4 +1,5 @@
 import HeaderBackground from "../assets/images/headerbackground.png";
+import Product from "./trial";
 
 function Home() {
   return (
@@ -33,6 +34,7 @@ function Home() {
           </div>
         </div>
       </div>
+      <Product />
     </div>
   );
 }

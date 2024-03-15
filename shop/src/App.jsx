@@ -25,7 +25,6 @@ function App() {
         </main>
       </div>
       <Footer />
-      <Trial />
     </Router>
   );
 }
