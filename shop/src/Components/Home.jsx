@@ -28,13 +28,24 @@ function Home() {
               We provide the best quality clothing for you. Choose your best
               clothing from our store.
             </h5>
-            <button className="px-8 shadow-gray-500 shadow-md py-5 mt-5 bg-gradient-to-t from-blue-500 rounded-full to-cyan-500 hover:from-blue-700 hover:to-cyan-700">
+            <button
+              className="px-8 shadow-gray-500 shadow-md py-5 mt-5 bg-gradient-to-t from-blue-500 rounded-full to-cyan-500 hover:from-blue-700 hover:to-cyan-700"
+              onClick={() => {
+                const productSection =
+                  document.getElementById("product-section");
+                if (productSection) {
+                  productSection.scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+            >
               Show Product
             </button>
           </div>
         </div>
       </div>
-      <Product />
+      <div id="product-section">
+        <Product />
+      </div>
     </div>
   );
 }
