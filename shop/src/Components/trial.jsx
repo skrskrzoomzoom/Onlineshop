@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 const ProductCard = ({ product, addToCart }) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg border border-white p-4">
-      <img className="w-full" src={product.image} alt={product.name} />
+      <img className="w-full h-auto" src={product.image} alt={product.name} />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">{product.name}</div>
         <p className="text-white text-base">{product.description}</p>
@@ -206,7 +206,7 @@ const App = () => {
           className="text-black"
         />
       )}
-      <ProductGrid products={products} addToCart={addToCart} />s
+      <ProductGrid products={products} addToCart={addToCart} />
     </div>
   );
 };
