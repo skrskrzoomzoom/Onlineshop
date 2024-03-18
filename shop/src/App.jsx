@@ -7,7 +7,6 @@ import Product from "./Components/Product";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Trial from "./Components/trial";
 
 function App() {
   return (

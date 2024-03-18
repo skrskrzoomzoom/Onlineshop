@@ -33,12 +33,41 @@ const ProductGrid = ({ products, addToCart }) => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+    ],
   };
 
   return (
     <div>
       <div className="text-center mb-4">
-        <h2 className="text-3xl font-bold text-white">Featured Products</h2>
+        <h2 className="text-3xl font-bold text-white">Nike</h2>
         <p className="text-white">Check out our latest products!</p>
       </div>
       <Slider {...settings}>
@@ -53,7 +82,7 @@ const ProductGrid = ({ products, addToCart }) => {
 const ShoppingCart = ({ cartItems, onClose, removeFromCart }) => {
   // Calculate total price
   const totalPrice = cartItems
-    .reduce((total, item) => total + parseFloat(item.price.replace("$", "")), 0)
+    .reduce((total, item) => total + parseFloat(item.price.replace("₱", "")), 0)
     .toFixed(2);
 
   return (
@@ -88,7 +117,7 @@ const ShoppingCart = ({ cartItems, onClose, removeFromCart }) => {
         ))}
         <div className="mt-4 flex justify-between items-center">
           <span className="font-semibold">Total:</span>
-          <span className="font-semibold">${totalPrice}</span>
+          <span className="font-semibold">₱{totalPrice}</span>
         </div>
         <button
           onClick={onClose}
@@ -108,36 +137,37 @@ const App = () => {
   const products = [
     {
       name: "Product 1",
-      image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg",
+      image:
+        "https://dynamic.zacdn.com/dVku9nBXV-K7_A8DfoDUz58Us4I=/filters:quality(70):format(webp)/https://static-ph.zacdn.com/p/nike-2849-8020503-1.jpg",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      price: "$19.99",
+      price: "₱19.99",
     },
     {
       name: "Product 2",
       image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg",
       description:
         "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      price: "$29.99",
+      price: "₱29.99",
     },
     {
       name: "Product 3",
       image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg",
       description:
         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-      price: "$39.99",
+      price: "₱19.99",
     },
     {
       name: "Product 4",
       image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg",
       description:
         "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
-      price: "$49.99",
+      price: "₱19.99",
     },
     {
       name: "Product 5",
       image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      price: "$19.99",
+      price: "₱19.99",
     },
   ];
 
@@ -176,7 +206,7 @@ const App = () => {
           className="text-black"
         />
       )}
-      <ProductGrid products={products} addToCart={addToCart} />
+      <ProductGrid products={products} addToCart={addToCart} />s
     </div>
   );
 };
