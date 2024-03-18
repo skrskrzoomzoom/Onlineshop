@@ -6,7 +6,8 @@ const products = [
     id: 1,
     name: "Product 1",
     price: 100,
-    image: "https://via.placeholder.com/150",
+    image:
+      "https://dynamic.zacdn.com/dVku9nBXV-K7_A8DfoDUz58Us4I=/filters:quality(70):format(webp)/https://static-ph.zacdn.com/p/nike-2849-8020503-1.jpg",
   },
   {
     id: 2,
@@ -35,6 +36,9 @@ function Services() {
     setCart(updatedCart);
   };
 
+  // Calculate total price of items in cart
+  const total = cart.reduce((acc, item) => acc + item.price, 0);
+
   return (
     <div className="container mx-auto">
       <h1 className="text-4xl font-bold my-8">Product</h1>
@@ -58,24 +62,27 @@ function Services() {
         {cart.length === 0 ? (
           <p>Your cart is empty</p>
         ) : (
-          <ul>
-            {cart.map((item, index) => (
-              <li
-                key={index}
-                className="flex items-center justify-between border-b py-2"
-              >
-                <img src={item.image} alt={item.name} className="w-16" />
-                <p>{item.name}</p>
-                <p>${item.price}</p>
-                <button
-                  onClick={() => removeFromCart(index)}
-                  className="text-red-500"
+          <>
+            <ul>
+              {cart.map((item, index) => (
+                <li
+                  key={index}
+                  className="flex items-center justify-between border-b py-2"
                 >
-                  Remove
-                </button>
-              </li>
-            ))}
-          </ul>
+                  <img src={item.image} alt={item.name} className="w-16" />
+                  <p>{item.name}</p>
+                  <p>${item.price}</p>
+                  <button
+                    onClick={() => removeFromCart(index)}
+                    className="text-red-500"
+                  >
+                    Remove
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 font-bold">Total: ${total}</p>
+          </>
         )}
       </div>
     </div>

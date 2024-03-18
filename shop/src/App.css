@@ -11,7 +11,7 @@ body {
     overflow: hidden;
     border-right: 2px solid #fff;
     animation: typing-text steps(40) 3s infinite, blink ease 0.3s infinite;
-    text-wrap: nowrap;
+    text-wrap: nowrap;  
     display: inline-block;
     width: max-content;
     width: 0;
@@ -36,3 +36,12 @@ body {
 .shopcartContainer {
     width: 300px;
 }
+
+.product-image {
+    width: 100%;
+    /* Ensures the image takes up the full width of its container */
+    height: 310px;
+    /* Adjust the height as needed to maintain consistency */
+    object-fit: cover;
+    /* Ensures the image covers the entire space while maintaining aspect ratio */
+}   

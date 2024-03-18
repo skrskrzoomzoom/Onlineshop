@@ -1,11 +1,22 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
+  const [rememberMe, setRememberMe] = useState(false); // State to manage the "Remember Me" checkbox
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Add your login logic here
+  };
+
+  const handleForgotPassword = () => {
+    setShowForgotPassword(true);
+  };
+
+  const closeForgotPassword = () => {
+    setShowForgotPassword(false);
   };
 
   return (
@@ -49,6 +60,35 @@ const LoginForm = () => {
             </div>
           </div>
 
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <input
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                checked={rememberMe}
+                onChange={() => setRememberMe(!rememberMe)}
+              />
+              <label
+                htmlFor="remember-me"
+                className="ml-2 block text-sm text-gray-900"
+              >
+                Remember me
+              </label>
+            </div>
+
+            <div className="text-sm">
+              <button
+                type="button"
+                onClick={handleForgotPassword}
+                className="font-medium text-indigo-600 hover:text-indigo-500"
+              >
+                Forgot your password?
+              </button>
+            </div>
+          </div>
+
           <div>
             <button
               type="submit"
@@ -59,11 +99,43 @@ const LoginForm = () => {
           </div>
         </form>
         <div className="text-center">
-          <a href="#" className="text-sm text-indigo-600 hover:text-indigo-500">
-            Forgot your password?
-          </a>
+          <Link
+            to="/signup"
+            className="text-sm text-indigo-600 hover:text-indigo-500"
+          >
+            Create an account
+          </Link>
         </div>
       </div>
+
+      {showForgotPassword && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded-md shadow-md">
+            <h2 className="text-lg font-semibold mb-4 text-black">
+              Forgot Password?
+            </h2>
+            <p className="mb-4 text-black">
+              Enter your email address to reset your password:
+            </p>
+            <input
+              type="email"
+              className="border rounded-md w-full py-2 px-3 mb-4 text-black"
+              placeholder="Email address"
+            />
+            <div className="flex justify-end">
+              <button className="bg-blue-500 text-white py-2 px-4 rounded-md mr-2">
+                Reset Password
+              </button>
+              <button
+                onClick={closeForgotPassword}
+                className="bg-gray-300 text-gray-800 py-2 px-4 rounded-md"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

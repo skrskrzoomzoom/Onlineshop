@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 const ProductCard = ({ product, addToCart }) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg border border-white p-4">
-      <img className="w-full h-auto" src={product.image} alt={product.name} />
+      <img className="product-image" src={product.image} alt={product.name} />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">{product.name}</div>
         <p className="text-white text-base">{product.description}</p>
@@ -87,9 +87,7 @@ const ShoppingCart = ({ cartItems, onClose, removeFromCart }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
-      <div className="bg-white p-8 max-w-3xl rounded-lg shadow-xl text-black">
-        {" "}
-        {/* Adjust max-w-3xl to your desired width */}
+      <div className="bg-white p-8 max-w-md rounded-lg shadow-xl text-black">
         <h2 className="text-2xl font-semibold mb-4 flex items-center">
           <i className="fas fa-shopping-cart mr-2"></i>
           Shopping Cart
@@ -100,7 +98,7 @@ const ShoppingCart = ({ cartItems, onClose, removeFromCart }) => {
               <img
                 src={item.image}
                 alt={item.name}
-                className="w-10 h-10 mr-4"
+                className="w-10 h-10 mr-4 rounded"
               />
               <div>
                 <p className="font-semibold">{item.name}</p>
@@ -108,7 +106,7 @@ const ShoppingCart = ({ cartItems, onClose, removeFromCart }) => {
               </div>
             </div>
             <button
-              onClick={() => removeFromCart(index)} // Updated this line
+              onClick={() => removeFromCart(index)}
               className="p-2 bg-red-500 text-white rounded-md"
             >
               Remove
@@ -136,37 +134,36 @@ const App = () => {
 
   const products = [
     {
-      name: "Product 1",
-      image:
-        "https://dynamic.zacdn.com/dVku9nBXV-K7_A8DfoDUz58Us4I=/filters:quality(70):format(webp)/https://static-ph.zacdn.com/p/nike-2849-8020503-1.jpg",
+      name: "Title: Product 1",
+      image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg", //Image Background
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       price: "₱19.99",
     },
+
     {
-      name: "Product 2",
-      image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg",
-      description:
-        "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      name: "Title: Product 2",
+      image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg", //Image Background
+      description: "Definition:",
       price: "₱29.99",
     },
     {
-      name: "Product 3",
-      image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg",
-      description:
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+      name: "Title: Product 3",
+      image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg", //Image Background
+      description: "Definition:",
       price: "₱19.99",
     },
+
     {
-      name: "Product 4",
-      image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg",
-      description:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+      name: "Title: Product 4",
+      image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg", //Image Background
+      description: "Definition:",
       price: "₱19.99",
     },
+
     {
-      name: "Product 5",
-      image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      name: "Title: Product 5",
+      image: "https://beagiver.com.ph/wp-content/uploads/2020/01/Go-Bag.jpg", //Image Background
+      description: "Definition:",
       price: "₱19.99",
     },
   ];
