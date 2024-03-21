@@ -1,11 +1,11 @@
-import "./App.css";
-import Navbar from "./Components/Navbar";
-import Home from "./Components/Home";
-import Footer from "./Components/Footer";
-import Aboutme from "./Components/About";
-import Product from "./Components/Product";
-import Login from "./Components/Login";
-import Signup from "./Components/Signup";
+import "./Css/App.css";
+import Navbar from "./Components/navbar/Navbar";
+import Home from "./Components/Homepage/Home";
+import Footer from "./Components/footer/Footer";
+import Aboutme from "./Components/about/About";
+import Product from "./Components/product/Product";
+import Login from "./Components/login/Login";
+import Signup from "./Components/signup/Signup";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {

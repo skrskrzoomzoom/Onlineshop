@@ -1,5 +1,5 @@
 import HeaderBackground from "../assets/images/headerbackground.png";
-import Product from "./trial";
+import Product from "../../TrialExample/trial";
 
 function Home() {
   return (
